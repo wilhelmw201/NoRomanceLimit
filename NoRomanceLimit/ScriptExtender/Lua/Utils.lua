@@ -37,7 +37,7 @@ end
 avatarName = nil
 function getAvatar()
     if avatarName == nil then
-        avatarName = mp
+        avatarName = Osi.DB_Avatars:Get(nil)[1][1]
     end
     return avatarName
 end

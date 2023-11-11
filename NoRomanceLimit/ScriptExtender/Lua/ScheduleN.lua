@@ -8,6 +8,7 @@ function ScheduleNight(night, force)
     if #(Osi.DB_CampNight:Get(night, nil)) > 0 then
         print(string.format("Warning: The night %s is queued but has not played.", night))
         if not force then
+            print("proceeding anyways...")
             Mods.NoRomanceLimit.CheckNight(night)
             return
         end

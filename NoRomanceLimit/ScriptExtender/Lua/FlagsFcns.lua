@@ -1,3 +1,29 @@
+function ClearDatingExceptHalsin (skip_enum)
+    for i in eMinthara .. eLaezel do
+        if  (skip_enum ~= i) then
+            ClearFlag(date_flags[i], getAvatar())
+    
+        end
+    end
+    -- clear dumping ppl dialogs
+    for i in eMinthara .. eLaezel do
+        ClearFlag(dumpdate_flags[i], getAvatar())
+    end
+end
+
+function RestoreDating (skip_enum)
+    for i in eGale .. eLaezel do -- no Minthy flag restore
+        if PersistentVars[i+12] == true and (skip_enum ~= i) and
+            GetFlag(partner_flags[i], getAvatar) == 0 
+        then
+            SetFlag(date_flags[i], getAvatar())
+            DPrint( "Restore dating with" .. origin_names[i])
+        end
+    end
+end
+
+
+
 
 function MinthyFixNew()
     if GetFlag("ORI_State_DatingMinthara_de1360cd-894b-40ea-95a7-1166d675d040", getAvatar()) > 0 then
@@ -35,7 +61,7 @@ function ClearPartnerships(exceptions)
 end
 
 function StashPartneredStatus(keepUnsetFlags)
-    DPrint(" StashPartneredStatus:")
+    DPrint(" StashPartnered(and dating)Status:")
     if GetFlag(date_flags[eMinthara], getAvatar()) > 0 then
         PersistentVars[11] = true
     end
@@ -46,6 +72,14 @@ function StashPartneredStatus(keepUnsetFlags)
             PersistentVars[index] = false
         end
     end
+    for index, date_flag in ipairs(date_flags) do
+        if GetFlag(date_flag, getAvatar()) ~= 0 then
+            PersistentVars[index+12] = true
+        elseif not keepUnsetFlags then
+            PersistentVars[index+12] = false
+        end    
+        
+    end
 end
 
 function RestorePartneredStatus(skip_enum)
@@ -55,7 +89,7 @@ function RestorePartneredStatus(skip_enum)
         skip_enum = 9999
     end
     -- for index, stash_result in ipairs(PersistentVars) do
-    for index = eMinthara, eLaezel do
+    for index = eMinthara, eHalsin do
         DPrint(index)
         if PersistentVars[index] and (skip_enum ~= index) and (GetFlag(partner_flags[index], getAvatar()) == 0) then
             DPrint(string.format("NoRomanceLimit: Restoring stable relationship with %s", origin_names[index]))

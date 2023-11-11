@@ -11,6 +11,9 @@ PersistentVars = {false, false, false, false, false,
                   0, -- 10stable relationship counter 
                   false, -- 11Minthara dating flag,
                   false,  -- 12restore at the end/start of the next dialog.
+                  false, false, false, false, -- starting from 13
+                  false, false, false, false -- (new) dating flags
+
                 }
 
 eMinthara = 1
@@ -93,7 +96,16 @@ waspartner_flags = {
     "ORI_State_WasPartneredWithLaezel_6d402d9b-7af9-43ea-b0eb-98e9612dde27",
     "ORI_State_WasPartneredWithHalsin_ee6b727d-243e-4189-b572-1d782ea78df8",
 }
-
+dumpdate_flags = {
+    "ORI_State_ChosePartnerOverMinthara_25202f13-55d3-4d13-b0c2-1245a90d99f2",
+    "ORI_State_ChosePartnerOverGale_ff5cbe4e-d3a8-4cc6-86fa-f336f15e4304",
+    "ORI_State_ChosePartnerOverWyll_f0b08362-76b7-4cf9-bd01-874fc1d8bf1c",
+    "ORI_State_ChosePartnerOverAstarion_529d4115-ef78-49aa-b1f2-24994e4e75e3",
+    "ORI_State_ChosePartnerOverKarlach_8e5ba2d7-146c-4751-a62a-4bd98e8f279e",
+    "ORI_State_ChosePartnerOverShadowheart_3928d3fc-b2c8-44ac-850d-e269177f8c0a",
+    "ORI_State_ChosePartnerOverLaezel_35c95a6d-4145-4903-ad73-a773df0e6892",
+    ""
+}
 
 Ext.Osiris.RegisterListener("DialogStarted", 2, "before", function(dialog, instanceid)
 
@@ -104,13 +116,14 @@ Ext.Osiris.RegisterListener("DialogStarted", 2, "before", function(dialog, insta
         StashPartneredStatus(true)
         ClearPartnerships()
         FixAfterFlagToggling()
-    elseif dialog == 'Halsin' then
+elseif dialog == 'Halsin' then
         StashPartneredStatus(true)
     else
         for _, value in ipairs(listMainCompanionDialogEntry) do
             if value[1] == dialog then
                 StashPartneredStatus(true)
                 ClearPartnerships({eHalsin, value[2]})
+                ClearDatingExceptHalsin(value[2])
                 FixAfterFlagToggling()
                 break
             end
@@ -137,7 +150,7 @@ Ext.Osiris.RegisterListener("DialogEnded", 2, "after", function(dialog, instance
         RestorePartneredStatus()
         FixAfterFlagToggling()
 
-    elseif dialog == 'Halsin' then
+    elseif dialog == 'Halsin' then 
         RestorePartneredStatus(eHalsin)
         FixAfterFlagToggling()
     else
@@ -145,8 +158,8 @@ Ext.Osiris.RegisterListener("DialogEnded", 2, "after", function(dialog, instance
             if value[1] == dialog then
                 DPrint(value[1])
                 RestorePartneredStatus(value[2])
+                RestoreDating(value[2])
                 FixAfterFlagToggling()
-
                 DPrintAll()
 
                 break
@@ -165,6 +178,16 @@ end)
 -- end)
 
 Ext.Osiris.RegisterListener("SavegameLoaded", 0, "after", function ()
+    for i in 1 .. 20 do
+        if PersistentVars[i] == nil then
+            PersistentVars[i] = false
+        end
+        if PersistentVars[10] == false then
+            PersistentVars[10] = 0
+        end
+    end
+
+
     FixPersistentVars()
     FixAll()
     StashPartneredStatus(true)
@@ -238,6 +261,6 @@ end)
 
 
 
-print("NoRomanceLimit Mod V8.31 Loaded!")
+print("NoRomanceLimit Mod V8.4 Loaded!")
 print("When you upgrade this mod, do not load a save that is in the middle of a conversation.")
 print("Please report unexpected behavior to nexusmods.com/baldursgate3/mods/1529?tab=posts")

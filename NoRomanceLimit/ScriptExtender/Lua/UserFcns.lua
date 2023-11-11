@@ -44,30 +44,6 @@ function CheckNight(name)
     all_flagsets = mergeLists(all_flagsets, filterFlagSet(name, Osi.DB_CampNight_Requirement:Get(nil,nil,nil,nil,nil,nil,nil)))
     all_flagsets = mergeLists(all_flagsets, filterFlagSet(name, Osi.DB_CampNight_Requirement:Get(nil,nil,nil,nil,nil,nil,nil,nil)))
 
-    for _, value in ipairs(Osi.DB_CampNight_Requirement_Partner:Get(nil,nil)) do
-        if value[1] == name then
-            print(string.format("This event requires partnered with %s.", stripUUID(value[2])))
-        end
-    end
-    for _, value in ipairs(Osi.DB_CampNight_Requirement_Dating:Get(nil,nil)) do
-        if value[1] == name then
-            print(string.format("This event requires dating %s.", stripUUID(value[2])))
-        end
-    end
-
-    local romanceNightEntry = Osi.DB_CampNight_RomanceNight:Get(name, nil,nil,nil)
-    if #romanceNightEntry > 0 then
-        print(string.format("This event requires this flag to be true: True is indicated as [O]; False [X]."))
-        local flagname = romanceNightEntry[0][4]
-        local satisfied
-        if Osi.GetFlag(flag, getAvatar()) > 0 then
-            satisfied = '[O]'
-        else
-            satisfied = '[X]'
-        end
-        print(string.format("%s %s", flagname, satisfied))
-    end
-
     if #all_flagsets > 0 then
         print("The event requires one of the following flagsets to be all true. True is indicated as [O]; False [X].")
         print(" -- ")
@@ -89,8 +65,29 @@ function CheckNight(name)
             print(" -- ")
         end
     end
+    local romanceNightEntry = Osi.DB_CampNight_RomanceNight:Get(name, nil,nil,nil)
+    if #romanceNightEntry > 0 then
+        print(string.format("This event requires this flag to be true: True is indicated as [O]; False [X]."))
+        local flagname = romanceNightEntry[0][4]
+        local satisfied
+        if Osi.GetFlag(flag, getAvatar()) > 0 then
+            satisfied = '[O]'
+        else
+            satisfied = '[X]'
+        end
+        print(string.format("In addition, %s is required ().", flagname, satisfied))
+    end
 
-
+    for _, value in ipairs(Osi.DB_CampNight_Requirement_Partner:Get(nil,nil)) do
+        if value[1] == name then
+            print(string.format("This event requires partnered with %s.", stripUUID(value[2])))
+        end
+    end
+    for _, value in ipairs(Osi.DB_CampNight_Requirement_Dating:Get(nil,nil)) do
+        if value[1] == name then
+            print(string.format("This event requires dating %s.", stripUUID(value[2])))
+        end
+    end
 end
 
 function filterFlagSet(name, flagsets)
