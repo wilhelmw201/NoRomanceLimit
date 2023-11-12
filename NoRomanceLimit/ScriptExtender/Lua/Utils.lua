@@ -63,7 +63,8 @@ function DPrintAll()
 end
 function PrintAll()
     for i, val in ipairs(origin_names) do
-        print(string.format("%s: Date %s partner %s (stash %s)", origin_names[i], GetFlag(date_flags[i], getAvatar()), GetFlag(partner_flags[i], getAvatar()), PersistentVars[i]))
+        print(string.format("%s: Date %s partner %s (stash Rela %s Date %s)", 
+        origin_names[i], GetFlag(date_flags[i], getAvatar()), GetFlag(partner_flags[i], getAvatar()), PersistentVars[i], PersistentVars[i+12]))
     end
     print(string.format("partnered %s", GetFlag(isPartneredFlag, getAvatar())))
     if FullPrint then

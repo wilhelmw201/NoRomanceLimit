@@ -1,20 +1,20 @@
 function ClearDatingExceptHalsin (skip_enum)
-    for i in eMinthara .. eLaezel do
+    for i = eMinthara , eLaezel do
         if  (skip_enum ~= i) then
             ClearFlag(date_flags[i], getAvatar())
     
         end
     end
     -- clear dumping ppl dialogs
-    for i in eMinthara .. eLaezel do
+    for i = eMinthara , eLaezel do
         ClearFlag(dumpdate_flags[i], getAvatar())
     end
 end
 
 function RestoreDating (skip_enum)
-    for i in eGale .. eLaezel do -- no Minthy flag restore
+    for i = eGale , eLaezel do -- no Minthy flag restore
         if PersistentVars[i+12] == true and (skip_enum ~= i) and
-            GetFlag(partner_flags[i], getAvatar) == 0 
+            GetFlag(partner_flags[i], getAvatar()) == 0 
         then
             SetFlag(date_flags[i], getAvatar())
             DPrint( "Restore dating with" .. origin_names[i])

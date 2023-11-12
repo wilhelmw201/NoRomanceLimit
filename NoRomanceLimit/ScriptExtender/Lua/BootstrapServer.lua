@@ -36,6 +36,7 @@ listMainCompanionDialogEntry = {
     {"ShadowHeart_InParty_95ca3833-09d0-5772-b16a-c7a5e9208fe5",eShadowHeart},
     {"Laezel_InParty2_93bf58f5-5111-9730-1ee2-62dfb0b00c96",eLaezel}
 }
+halsinCompanionDialog = 'CAMP_Halsin2_c0ab0f6f-3ffc-d06d-0d6d-d1aaef70dfe4'
 
 listOfAllFirstSecondRomance = {
     "CAMP_AstarionHunger_SCO_Companion_359981f9-d660-96e2-3e94-218e92d5e479", 
@@ -116,7 +117,7 @@ Ext.Osiris.RegisterListener("DialogStarted", 2, "before", function(dialog, insta
         StashPartneredStatus(true)
         ClearPartnerships()
         FixAfterFlagToggling()
-elseif dialog == 'Halsin' then
+    elseif dialog == halsinCompanionDialog then
         StashPartneredStatus(true)
     else
         for _, value in ipairs(listMainCompanionDialogEntry) do
@@ -150,7 +151,7 @@ Ext.Osiris.RegisterListener("DialogEnded", 2, "after", function(dialog, instance
         RestorePartneredStatus()
         FixAfterFlagToggling()
 
-    elseif dialog == 'Halsin' then 
+    elseif dialog == halsinCompanionDialog then 
         RestorePartneredStatus(eHalsin)
         FixAfterFlagToggling()
     else
@@ -178,7 +179,8 @@ end)
 -- end)
 
 Ext.Osiris.RegisterListener("SavegameLoaded", 0, "after", function ()
-    for i in 1 .. 20 do
+
+    for i = 1, 20 do
         if PersistentVars[i] == nil then
             PersistentVars[i] = false
         end
@@ -262,5 +264,4 @@ end)
 
 
 print("NoRomanceLimit Mod V8.4 Loaded!")
-print("When you upgrade this mod, do not load a save that is in the middle of a conversation.")
 print("Please report unexpected behavior to nexusmods.com/baldursgate3/mods/1529?tab=posts")

@@ -99,4 +99,7 @@ DB_CampNight_Camp("NIGHT_Astarion_BlackMassAftermath_347b8d34-c287-4d15-83c5-7ae
 DB_CampNight_RomanceNight("NIGHT_Astarion_BlackMassAftermath_347b8d34-c287-4d15-83c5-7ae6786003c7", "S_Player_Astarion_c7c13742-bacd-460a-8f65-f864fe41f255", "CAMP_Astarion_SD_ROM_BlackMassAftermath_cdc9ae59-c30e-3819-4060-d46263681631", "NULL_00000000-0000-0000-0000-000000000000");
 DB_OriginMayLeaveDialog("S_Player_Astarion_c7c13742-bacd-460a-8f65-f864fe41f255", "CAMP_Astarion_SD_ROM_BlackMassAftermath_cdc9ae59-c30e-3819-4060-d46263681631");
 end
+
+
+
 end

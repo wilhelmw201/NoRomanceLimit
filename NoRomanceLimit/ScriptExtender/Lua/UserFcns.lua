@@ -67,15 +67,16 @@ function CheckNight(name)
     end
     local romanceNightEntry = Osi.DB_CampNight_RomanceNight:Get(name, nil,nil,nil)
     if #romanceNightEntry > 0 then
-        print(string.format("This event requires this flag to be true: True is indicated as [O]; False [X]."))
-        local flagname = romanceNightEntry[0][4]
-        local satisfied
-        if Osi.GetFlag(flag, getAvatar()) > 0 then
-            satisfied = '[O]'
-        else
-            satisfied = '[X]'
+        local flagname = romanceNightEntry[1][4]
+        if string.sub(flagname, 1, 4) ~= "NULL" then
+            local satisfied
+            if Osi.GetFlag(flagname, getAvatar()) > 0 then
+                satisfied = '[O]'
+            else
+                satisfied = 'Not set!'
+            end
+            print(string.format("In addition, flag %s must be set (%s).", flagname, satisfied))
         end
-        print(string.format("In addition, %s is required ().", flagname, satisfied))
     end
 
     for _, value in ipairs(Osi.DB_CampNight_Requirement_Partner:Get(nil,nil)) do
