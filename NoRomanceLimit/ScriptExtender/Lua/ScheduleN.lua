@@ -92,12 +92,20 @@ Osi.DB_CampNight_Camp("NIGHT_Wyll_Act3Romance_0dec1691-512f-4b13-9249-5cce642272
 Osi.DB_CampNight_CRD("NIGHT_Wyll_Act3Romance_0dec1691-512f-4b13-9249-5cce64227231", "S_Player_Wyll_c774d764-4a17-48dc-b470-32ace9ce447d", "CAMP_Wyll_CRD_Act3Romance_599fe884-f39f-a3b5-7a86-ca239e016a05", "NULL_00000000-0000-0000-0000-000000000000");
 end
 if name == "NIGHT_Astarion_BlackMassAftermath_347b8d34-c287-4d15-83c5-7ae6786003c7" then
-DB_CampNight("NIGHT_Astarion_BlackMassAftermath_347b8d34-c287-4d15-83c5-7ae6786003c7", 4190);
-DB_CampNight_Camp("NIGHT_Astarion_BlackMassAftermath_347b8d34-c287-4d15-83c5-7ae6786003c7", "SLUMS");
-DB_CampNight_Camp("NIGHT_Astarion_BlackMassAftermath_347b8d34-c287-4d15-83c5-7ae6786003c7", "ELFSONG");
-DB_CampNight_Camp("NIGHT_Astarion_BlackMassAftermath_347b8d34-c287-4d15-83c5-7ae6786003c7", "FARM");
-DB_CampNight_RomanceNight("NIGHT_Astarion_BlackMassAftermath_347b8d34-c287-4d15-83c5-7ae6786003c7", "S_Player_Astarion_c7c13742-bacd-460a-8f65-f864fe41f255", "CAMP_Astarion_SD_ROM_BlackMassAftermath_cdc9ae59-c30e-3819-4060-d46263681631", "NULL_00000000-0000-0000-0000-000000000000");
-DB_OriginMayLeaveDialog("S_Player_Astarion_c7c13742-bacd-460a-8f65-f864fe41f255", "CAMP_Astarion_SD_ROM_BlackMassAftermath_cdc9ae59-c30e-3819-4060-d46263681631");
+Osi.DB_CampNight("NIGHT_Astarion_BlackMassAftermath_347b8d34-c287-4d15-83c5-7ae6786003c7", 4190);
+Osi.DB_CampNight_Camp("NIGHT_Astarion_BlackMassAftermath_347b8d34-c287-4d15-83c5-7ae6786003c7", "SLUMS");
+Osi.DB_CampNight_Camp("NIGHT_Astarion_BlackMassAftermath_347b8d34-c287-4d15-83c5-7ae6786003c7", "ELFSONG");
+Osi.DB_CampNight_Camp("NIGHT_Astarion_BlackMassAftermath_347b8d34-c287-4d15-83c5-7ae6786003c7", "FARM");
+Osi.DB_CampNight_RomanceNight("NIGHT_Astarion_BlackMassAftermath_347b8d34-c287-4d15-83c5-7ae6786003c7", "S_Player_Astarion_c7c13742-bacd-460a-8f65-f864fe41f255", "CAMP_Astarion_SD_ROM_BlackMassAftermath_cdc9ae59-c30e-3819-4060-d46263681631", "NULL_00000000-0000-0000-0000-000000000000");
+Osi.DB_OriginMayLeaveDialog("S_Player_Astarion_c7c13742-bacd-460a-8f65-f864fe41f255", "CAMP_Astarion_SD_ROM_BlackMassAftermath_cdc9ae59-c30e-3819-4060-d46263681631");
+end
+if name == "NIGHT_Halsin_Romance_Suggestion_28195bc6-aa96-4d3d-bcb1-c89e692574bc" then
+Osi.DB_CampNight("NIGHT_Halsin_Romance_Suggestion_28195bc6-aa96-4d3d-bcb1-c89e692574bc", 4120)
+Osi.DB_CampNight_Camp("NIGHT_Halsin_Romance_Suggestion_28195bc6-aa96-4d3d-bcb1-c89e692574bc", "FARM")
+Osi.DB_CampNight_Camp("NIGHT_Halsin_Romance_Suggestion_28195bc6-aa96-4d3d-bcb1-c89e692574bc", "SLUMS")
+Osi.DB_CampNight_Camp("NIGHT_Halsin_Romance_Suggestion_28195bc6-aa96-4d3d-bcb1-c89e692574bc", "ELFSONG")
+Osi.DB_CampNight_CRD("NIGHT_Halsin_Romance_Suggestion_28195bc6-aa96-4d3d-bcb1-c89e692574bc", "S_GLO_Halsin_7628bc0e-52b8-42a7-856a-13a6fd413323", "Camp_Act3_CRD_HalsinRomance_3afba522-6412-f0f7-770b-b71c0d9f6376", "NULL_00000000-0000-0000-0000-000000000000") 
+Osi.DB_CampNight_RomanceNight("NIGHT_Halsin_Romance_Suggestion_28195bc6-aa96-4d3d-bcb1-c89e692574bc", "S_GLO_Halsin_7628bc0e-52b8-42a7-856a-13a6fd413323", "CAMP_HalsinRomanceAct3_SD_ROM_3d042271-f13a-fc4a-50b3-6f7e51f1b7ba", "NULL_00000000-0000-0000-0000-000000000000")
 end
 
 
